@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuda od Marty</title>
+    <style>
+        /* Ogólne ustawienia */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            color: #333;
+            background-color: #ffeef7; /* Pastelowy róż */
+        }
+
+        header {
+            background: #f9e5ef;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 3px solid #ffc0cb;
+        }
+
+        header img {
+            width: 96px;
+            height: 96px;
+            display: block;
+            margin: 0 auto;
+        }
+
+        main {
+            padding: 20px;
+            background: #fff;
+            min-height: 100vh;
+        }
+
+        footer {
+            text-align: center;
+            background: #f9e5ef;
+            padding: 15px;
+            border-top: 3px solid #ffc0cb;
+        }
+
+        /* Wysuwane menu */
+        .sidebar {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            left: 0;
+            background-color: #f4c2d6;
+            overflow-x: hidden;
+            transition: 0.3s;
+            padding-top: 60px;
+            border-right: 3px solid #ffc0cb;
+        }
+
+        .sidebar a {
+            padding: 10px 15px;
+            text-decoration: none;
+            font-size: 1.2em;
+            color: #fff;
+            display: block;
+            transition: 0.3s;
+            text-align: center;
+        }
+
+        .sidebar a:hover {
+            background-color: #ffc0cb;
+        }
+
+        .sidebar .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 1.5em;
+            margin-left: 50px;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .open-btn {
+            font-size: 1.5em;
+            cursor: pointer;
+            background-color: #f9e5ef;
+            border: none;
+            color: #333;
+            padding: 10px 20px;
+            margin: 20px;
+            transition: 0.3s;
+        }
+
+        .open-btn:hover {
+            background-color: #ffc0cb;
+            color: #fff;
+        }
+
+        /* Sekcje strony */
+        .section {
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        /* Responsywność */
+        @media (max-width: 768px) {
+            .open-btn {
+                font-size: 1em;
+                padding: 8px 15px;
+            }
+
+            .sidebar a {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <button class="open-btn" onclick="openMenu()">☰ Menu</button>
+        <img src="logo.png" alt="Logo Cuda od Marty">
+        <h1>Cuda od Marty</h1>
+    </header>
+
+    <div id="sidebar" class="sidebar">
+        <a href="javascript:void(0)" class="close-btn" onclick="closeMenu()">×</a>
+        <a href="#" onclick="showSection('home')">Strona główna</a>
+        <a href="#" onclick="showSection('about')">O nas</a>
+        <a href="#" onclick="showSection('products')">Produkty</a>
+        <a href="#" onclick="showSection('contact')">Kontakt</a>
+    </div>
+
+    <main>
+        <div id="home" class="section active">
+            <h2>Strona główna</h2>
+            <p>Witamy w sklepie Cuda od Marty! Odkryj unikalne produkty wykonane z miłości do rękodzieła.</p>
+        </div>
+        <div id="about" class="section">
+            <h2>O nas</h2>
+            <p>Cuda od Marty to marka tworzona z pasją do rękodzieła. Nasze produkty są tworzone z sercem i dbałością o każdy szczegół.</p>
+        </div>
+        <div id="products" class="section">
+            <h2>Nasze produkty</h2>
+            <p>Znajdziesz u nas ręcznie robione ubrania, zabawki i wiele więcej. Wszystko powstaje z myślą o naszych klientach.</p>
+        </div>
+        <div id="contact" class="section">
+            <h2>Kontakt</h2>
+            <p>Email: <a href="mailto:kontakt@cudaodmarty.pl">kontakt@cudaodmarty.pl</a></p>
+            <p>Telefon: +48 123 456 789</p>
+            <p>Adres: ul. Rękodzielnicza 10, 00-000 Warszawa</p>
+        </div>
+    </main>
+
+    <footer>
+        <p>Sklep Cuda od Marty | 2024</p>
+    </footer>
+
+    <script>
+        /* Funkcja do otwierania menu */
+        function openMenu() {
+            document.getElementById("sidebar").style.width = "250px";
+        }
+
+        /* Funkcja do zamykania menu */
+        function closeMenu() {
+            document.getElementById("sidebar").style.width = "0";
+        }
+
+        /* Funkcja do przełączania sekcji */
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(sectionId).classList.add('active');
+            closeMenu(); // Zamknij menu po wyborze sekcji
+        }
+    </script>
+</body>
+</html>
